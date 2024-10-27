@@ -1,0 +1,24 @@
+{
+  "name": "emob-msp-portal-admin",
+  "version": "1.0.0",
+  "author": "pedroguia",
+  "description": "Module Federation with NextJS and Client-Side React Remotes",
+  "private": true,
+  "main": "index.js",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "install:apps": "pnpm -C host-app install && pnpm -C remote-app install && pnpm -C test-app install",
+    "start:apps": "npx concurrently \"pnpm -C host-app dev\" \"pnpm -C remote-app dev\" \"pnpm -C test-app dev\"",
+    "build:apps": "pnpm -C host-app install && pnpm -C remote-app install && pnpm -C test-app install && pnpm run build:host && pnpm run build:remote && pnpm run copy-remote-build&& pnpm run build:test && pnpm run copy-test-build",
+    "build:host": "pnpm -C host-app run build",
+    "build:remote": "pnpm -C remote-app run build",
+    "build:test": "pnpm -C test-app run build",
+    "lint:apps": "npx concurrently \"pnpm -C host-app lint\" \"pnpm -C remote-app lint\" \"pnpm -C test-app lint\"",
+    "clean:apps": "npx concurrently \"pnpm -C host-app clean\" \"pnpm -C remote-app clean\" \"pnpm -C test-app clean\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "7.2.0"
+  }
+}
